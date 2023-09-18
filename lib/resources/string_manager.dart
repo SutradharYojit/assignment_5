@@ -26,7 +26,6 @@ class StringManager {
   static const blogScreen = "Blog";
   static const contactUsScreen = "Contact Us";
 
-
   //Contact Screen
   static const contactAppBarTxt = "Contact Us";
   static const nameHintTxt = "Enter Your Name";
@@ -58,10 +57,6 @@ class StringManager {
   static const achievementTxt = "Achievements";
   static const projectTxt = "Projects";
 
-
-
-
-
 }
 // Firebase Service String Manager, the string defines the key(which store the data/value) of the database and defines the firebase collection String
 class FBServiceManager {
@@ -71,24 +66,13 @@ class FBServiceManager {
   static const serviceFbDeleteSuccess = "Delete Successfully";
   static const serviceFbSentFail = "Message Failed";
   static const dbUser = "users";
-  static const dbContactUs = "contactUs";
+  static const dbMessageHub = "message_hub";
+  static const dbMessageColl = "messages";
   static const fbUserName = "user_name";
   static const fbEmail = "email";
-  static const fbDescription = "description";
-  static const fbPhoneNumber = "phoneNumber";
+  static const fbMessage = "message";
+  static const fbReceiverId = "receiver_id";
+  static const fbSenderId = "sender_id";
+  static const fbTimeStamp = "timeStamp";
   static const fbUid = "uid";
-  static const fbSkill = "skill";
-  static const fbAchievement = "achievement";
-  static const fbProject = "project";
-}
-
-// Api Service String Manager and key also
-class ApiServiceManager {
-  static const blogAdd = "Blog add Successfully";
-  static const blogUpdate = "Blog update Successfully";
-  static const apiTitleKey = "title";
-  static const apiDescriptionKey = "description";
-  static const apiAuthorKey = "authorId";
-  static const apiImageUrlKey = "imageUrl";
-
 }

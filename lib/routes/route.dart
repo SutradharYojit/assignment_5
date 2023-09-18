@@ -1,3 +1,4 @@
+import 'package:assignment_5/model/model.dart';
 import 'package:go_router/go_router.dart';
 import '../view/auth/signup/signup_screen.dart';
 import '../view/view.dart';
@@ -36,7 +37,9 @@ GoRouter router = GoRouter(
     GoRoute(
       path: RoutesName.chatScreen,
       builder: (context, state) {
-        return   ChatScreen();
+        return ChatScreen(
+          userInfo: state.extra as UserDataModel,
+        );
       },
     ),
   ],

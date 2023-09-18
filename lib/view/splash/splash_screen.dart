@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Duration duration = const Duration(seconds: 3);
     Future.delayed(
       duration,
-      () {
+          () {
         if (userPreferences.email != null &&
             userPreferences.pass != null &&
             userPreferences.email!.isNotEmpty &&
@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Web App",
+                    "TeamUp App",
                     style: TextStyle(
                       fontSize: screenWidth < 600 ? 40.sp : 20.sp,
                       fontWeight: FontWeight.w400,

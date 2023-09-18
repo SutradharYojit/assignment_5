@@ -30,25 +30,32 @@ class PrimaryTextFilled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      focusNode: focusNode,
-      readOnly: readOnly ?? false,
-      autofocus: autofocus ?? false,
-      controller: controller,
-      textInputAction: TextInputAction.next,
-      keyboardType: keyboardType,
-      maxLines: maxLines ?? null,
-      maxLength: maxLength,
-      decoration: InputDecoration(
-          prefixText: prefixText,
-          prefixIcon: prefixIcon,
-          labelText: labelText,
-          hintText: hintText,
-          enabledBorder: buildOutlineInputBorder(),
-          focusedBorder: buildOutlineInputBorder(),
-          // border: buildOutlineInputBorder(),
-          errorBorder: buildOutlineInputBorder(),
-          focusedErrorBorder: buildOutlineInputBorder()),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15)
+      ),
+      child: TextFormField(
+        readOnly: readOnly ?? false,
+        autofocus: autofocus ?? false,
+        controller: controller,
+        textInputAction: TextInputAction.next,
+        keyboardType: keyboardType,
+        maxLines: maxLines ?? null,
+        maxLength: maxLength,
+        decoration: InputDecoration(
+
+            fillColor: Colors.white,
+            prefixText: prefixText,
+            prefixIcon: prefixIcon,
+            labelText: labelText,
+            hintText: hintText,
+            enabledBorder: buildOutlineInputBorder(),
+            focusedBorder: buildOutlineInputBorder(),
+            // border: buildOutlineInputBorder(),
+            errorBorder: buildOutlineInputBorder(),
+            focusedErrorBorder: buildOutlineInputBorder()),
+      ),
     );
   }
 }

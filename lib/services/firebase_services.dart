@@ -33,7 +33,7 @@ class FireBaseServices {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(email: textEmail, password: textPass).then(
         (value) async {
           // save the user data to the Firebase clod store Services
-          await db.collection("users").doc().set({
+          await db.collection(FBServiceManager.dbUser).doc().set({
             FBServiceManager.fbUserName: userName,
             FBServiceManager.fbEmail: textEmail,
             FBServiceManager.fbUid: auth.currentUser?.uid,
@@ -73,7 +73,7 @@ class FireBaseServices {
           log("Success full logged in");
           // save the user credentials locally so user don't need to login in every time
           await userPreferences.saveLoginUserInfo(textEmail, textPass).then(
-                (value) {
+            (value) {
               context.go(RoutesName.homeScreen);
             },
           );
@@ -89,4 +89,49 @@ class FireBaseServices {
     }
   }
 
+  static Future sendMessage({
+    required String receiverId,
+    required String senderId,
+    required String message,
+    required int timeStamp,
+  }) async {
+    List<String> ids = [senderId, receiverId];
+    ids.sort();
+    String chatRoomId = ids.join("_");
+    log("message Send");
+    try {
+      await db.collection(FBServiceManager.dbMessageHub).doc(chatRoomId).collection("messages").add({
+        FBServiceManager.fbMessage: message,
+        FBServiceManager.fbSenderId: senderId,
+        FBServiceManager.fbReceiverId: receiverId,
+        FBServiceManager.fbTimeStamp: timeStamp,
+      }).then(
+        (value) => log("Successfully message add"),
+      );
+    } on FirebaseAuthException catch (e) {
+      log(e.message.toString());
+      // ignore: use_build_context_synchronously
+    }
+  }
+}
+
+class UserGlobalVariables {
+  static String? docId;
+  static String? uid;
+  static String? username;
+
+  static final auth = FirebaseAuth.instance;
+  static final db = FirebaseFirestore.instance;
+
+  static Future<void> getUserData() async {
+    final data = await db
+        .collection(FBServiceManager.dbUser)
+        .where(FBServiceManager.fbUid, isEqualTo: auth.currentUser!.uid)
+        .get();
+    log("get Success");
+    uid = auth.currentUser!.uid;
+    docId = data.docs[0].id;
+    username = data.docs[0][FBServiceManager.fbUserName];
+    log(uid.toString());
+  }
 }
